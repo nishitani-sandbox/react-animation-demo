@@ -39,6 +39,7 @@ class AnimationDemo extends Component {
         <button onClick={this.handleClick} />
         <ReactCSSTransitionGroup
           transitionName="example"
+          transitionAppear={true}
           transitionEnterTimeout={300}
           transitionLeaveTimeout={500}
         >
