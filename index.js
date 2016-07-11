@@ -12,11 +12,13 @@ class AnimationDemo extends Component {
         'old-2',
       ],
       num: 0,
+      toggle: true,
     };
-    this.handleClick = this.handleClick.bind(this);
+    this.handleAdd = this.handleAdd.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
   }
 
-  handleClick() {
+  handleAdd() {
     const { items, num } = this.state;
     const newItems = items.concat([ `new-${num}` ])
     const newNum = num + 1;
@@ -26,17 +28,30 @@ class AnimationDemo extends Component {
     });
   }
 
+  handleToggle() {
+    const { toggle } = this.state;
+    this.setState({
+      toggle: !toggle,
+    });
+  }
+
   render() {
-    const { items } = this.state;
+    const { items, toggle } = this.state;
     const itemComponents = items.map(
       item =>
         <div key={item}>
           {item}
         </div>
     );
+    const toggleComponent = toggle
+      ? <div>toggle item</div>
+      : null;
+
     return (
       <div>
-        <button onClick={this.handleClick} />
+        <button onClick={this.handleAdd}>
+          ADD!!
+        </button>
         <ReactCSSTransitionGroup
           transitionName="example"
           transitionAppear={true}
@@ -44,6 +59,17 @@ class AnimationDemo extends Component {
           transitionLeaveTimeout={500}
         >
           {itemComponents}
+        </ReactCSSTransitionGroup>
+        <button onClick={this.handleToggle}>
+          TOGGLE!!
+        </button>
+        <ReactCSSTransitionGroup
+          transitionName="toggle"
+          transitionAppear={true}
+          transitionEnterTimeout={300}
+          transitionLeaveTimeout={500}
+        >
+          {toggleComponent}
         </ReactCSSTransitionGroup>
       </div>
     )
