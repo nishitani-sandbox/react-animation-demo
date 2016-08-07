@@ -2,6 +2,6 @@
 
 Just for my learning
 
-# Author
+## Author
 
 [nishitaniyuki](https://github.com/nishitaniyuki)
